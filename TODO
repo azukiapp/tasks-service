@@ -1,0 +1,9 @@
+TODO:
+ ✔ Alterar versão para 0.0.1 @done (15-04-06 16:05)
+ ✔ Adicionar Azkfile.js @done (15-04-06 16:22)
+ ✔ [Prevent errors from breaking / crashing gulp watch](http://stackoverflow.com/a/23973536) @done (15-04-07 04:40)
+ ✔ substituir o lodash pelo [ramdajs](http://ramdajs.com/) @done (15-04-07 05:48)
+ ✔ Trocar Q por bluebird @done (15-04-07 05:48)
+
+  ✔ Adicionar suporte ao .env: @done (15-04-07 04:43)
+   ✔ Adicionar `.env` ao .gitignore @done (15-04-07 04:43)
