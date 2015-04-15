@@ -1,0 +1,44 @@
+{
+  "name": "asana-pivotal",
+  "version": "0.0.1",
+  "description": "asana-pivotal",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "./node_modules/.bin/gulp lint test",
+    "deploy": "./node_modules/.bin/npm-deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azukiapp/asana-pivotal.git"
+  },
+  "bin": {
+    "migrate": "./bin/migrate"
+  },
+  "keywords": [
+    "azk"
+  ],
+  "license": "Apache License",
+  "bugs": {
+    "url": "https://github.com/azukiapp/asana-pivotal/issues"
+  },
+  "homepage": "https://github.com/azukiapp/asana-pivotal",
+  "dependencies": {
+    "asana": "^0.7.7",
+    "bluebird": "^2.9.24",
+    "chalk": "^1.0.0",
+    "nopt": "^3.0.1",
+    "prettyjson": "^1.1.0",
+    "ramda": "^0.13.0",
+    "source-map-support": "^0.2.10"
+  },
+  "devDependencies": {
+    "azk-dev": "0.0.14",
+    "babel-runtime": "^5.1.9",
+    "gulp": "^3.8.11"
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">= 0.10"
+  }
+}
