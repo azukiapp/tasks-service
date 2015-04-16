@@ -29,7 +29,7 @@ if (parsed.help) {
   var usage_message = ['',
     ' Usage:',
     '',
-    '   $ migrate [options] [output] [projects]',
+    '   $ pull_asana [options] [output] [projects]',
     '',
     ' Options:',
     '',
@@ -40,9 +40,9 @@ if (parsed.help) {
     '',
     ' Examples:',
     '',
-    '   $ migrate debug.json',
-    '   $ migrate debug.json \"Blog,Bizdev - Azuki\"',
-    '   $ migrate --output debug.json --projects \"Blog,Bizdev - Azuki\"',
+    '   $ pull_asana debug.json',
+    '   $ pull_asana debug.json \"Blog,Bizdev - Azuki\"',
+    '   $ pull_asana --output debug.json --projects \"Blog,Bizdev - Azuki\"',
     ''
   ].join('\n');
 
@@ -76,4 +76,3 @@ if (parsed.output) {
 
 var Asana = require('../lib/src/asana').Asana;
 (new Asana(asana_key, options)).run(workspace, projects);
-

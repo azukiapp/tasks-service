@@ -13,7 +13,7 @@
     "url": "https://github.com/azukiapp/asana-pivotal.git"
   },
   "bin": {
-    "migrate": "./bin/migrate"
+    "pull_asana"  : "./bin/pull_asana",
   },
   "keywords": [
     "azk"
