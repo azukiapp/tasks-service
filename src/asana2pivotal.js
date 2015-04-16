@@ -143,9 +143,13 @@ export class Asana2Pivotal {
       }
       return label;
     }, labels);
+
+    // array of object to array of ids
+    var ownerIds = R.map((owner) => owner.id, assignee.concat(owners));
+
     // Clean duplicated
-    owners = R.uniqWith(((a, b) => a.id === b.id))(assignee.concat(owners));
-    labels = R.uniqWith(((a, b) => a === b))(labels);
+    ownerIds = R.uniq(ownerIds);
+    labels = R.uniq(labels);
 
     // clean nil or empty
     labels = R.filter(((label) => !R.isNil(label) && !R.isEmpty(label)), labels);
@@ -155,11 +159,11 @@ export class Asana2Pivotal {
       name         : task.name,
       labels       : labels,
       description  : task.notes,
-      project_id   : projectMaped.pivotal_id,
-      current_state: projectMaped.state,
+      projectId   : projectMaped.pivotal_id,
+      currentState: projectMaped.state,
       deadline     : task.due_on,
       tasks        : subtasks,
-      owners       : owners,
+      ownerIds     : ownerIds,
       comments     : comments.concat(subtasks_comments)
     };
   }
@@ -190,7 +194,7 @@ export class Asana2Pivotal {
     var normalize = function(storie) {
       return {
         text: storie.text,
-        person_id: storie.created_by.id
+        personId: storie.created_by.id
       };
     };
     var stories = R.map(normalize, (task.stories || []));

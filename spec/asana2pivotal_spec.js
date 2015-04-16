@@ -91,8 +91,8 @@ describe("Asana2Pivotal", function() {
           asana_id     : 26782636061593,
           name         : "Blog Template - Sub-tasks",
           description  : "Teste de Menção @gullitmiranda.",
-          project_id   : "6451272",
-          current_state: "unstarted",
+          projectId   : "6451272",
+          currentState: "unstarted",
           deadline     : "2015-04-10",
         };
       });
@@ -103,8 +103,8 @@ describe("Asana2Pivotal", function() {
         h.expect(storie.asana_id     ).to.deep.equal(should.asana_id     );
         h.expect(storie.name         ).to.deep.equal(should.name         );
         h.expect(storie.description  ).to.deep.equal(should.description  );
-        h.expect(storie.project_id   ).to.deep.equal(should.project_id   );
-        h.expect(storie.current_state).to.deep.equal(should.current_state);
+        h.expect(storie.projectId    ).to.deep.equal(should.projectId   );
+        h.expect(storie.currentState ).to.deep.equal(should.currentState);
         h.expect(storie.deadline     ).to.deep.equal(should.deadline     );
       });
 
@@ -131,12 +131,11 @@ describe("Asana2Pivotal", function() {
 
       it('should owners from first storie', function () {
         var storie = workspace.stories[0];
-        var owners = [
-          { id: 6598261, name: "Gullit Miranda" },
-          { id: 3333333, name: "Julio Saito" }
-        ];
+        var ownerIds = [ 6598261, 3333333 ];
+        // Gullit Miranda
+        // Julio Saito
 
-        h.expect(storie.owners).to.deep.equal(owners);
+        h.expect(storie.ownerIds).to.deep.equal(ownerIds);
       });
 
       it('should comments from first storie', function () {
@@ -149,19 +148,19 @@ describe("Asana2Pivotal", function() {
             '&Signature=GJCt9bJQkEwb4UKmpyFQpidzngM%3D#_=_'].join('')
           ]
         }, {
-          person_id: 2926078,
+          personId: 2926078,
           text: ['O @heitor e o @julio testaram o https://atom.io/packages/motepair, ',
                 'que pode ser uma ferramente bem funcional e interessante.'].join('')
         }, {
-          person_id: 3333333,
+          personId: 3333333,
           text: ['sim, é bem legal. só que só funciona no atom. O atom por sua vez me ',
                 'parece cada dia mais utilizável.'].join('')
         }, {
-          person_id: 5555555,
+          personId: 5555555,
           text: ['Me intrometendo aí: ouvi falar muito bem desse plugin de Sublime.\n',
                 'http://teamremote.github.io/remote-sublime/'].join('')
         }, {
-          person_id: 3333333,
+          personId: 3333333,
           text: 'vamos testar!'
         }, {
           text: "`[Draft post]:`with notes"
