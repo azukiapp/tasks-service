@@ -54,6 +54,25 @@ $ gulp watch:test
 ```
 
 
+### Get Pivotal Users
+
+- Run babel-node:
+
+    ```shell
+    $ npm install babel
+    $ babel-node
+    ```
+
+- Get project memberships
+
+    ```javascript
+    var api_key = <PIVOTAL_API_KEY>;
+    var project_id = <PIVOTAL_PROJECT_ID>;
+    var Pivotal = require('./lib/src/pivotal').Pivotal;
+    var pivotal = new Pivotal(api_key, {});
+    pivotal.client.getMembershipsAsync(project_id).then((data) => { console.log(JSON.stringify(data, null, 2)); });
+    ```
+
 #### Deploy npm package
 
 You can deploy package with:

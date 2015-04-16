@@ -1,0 +1,71 @@
+#!/usr/bin/env node
+/*jslint evil: true */
+require('source-map-support').install();
+
+var nopt = require('nopt');
+
+var knownOpts = {
+  'from'  : String,
+  'help'    : Boolean,
+  'silent'  : Boolean
+};
+
+var shortHands = {
+  'f': ['--from'],
+  '?': ['--help'],
+  'h': ['--help'],
+  's': ['--silent']
+};
+
+// everything is optional.
+// knownOpts and shorthands default to {}
+// arg list defaults to process.argv
+// slice defaults to 2
+var parsed = nopt(knownOpts, shortHands, process.argv, 2);
+
+if (parsed.help) {
+  var usage_message = ['',
+    ' Usage:',
+    '',
+    '   $ push_asana [options] [from]',
+    '',
+    ' Options:',
+    '',
+    '   --from, -f       filename with normalized tasks',
+    '   --help, -h, -?   show this help message',
+    '   --silent, -s     disale more infos',
+    '',
+    ' Examples:',
+    '',
+    '   $ push_asana normalized.json',
+    '   $ push_asana --from normalized.json',
+    ''
+  ].join('\n');
+
+  console.log(usage_message);
+  process.exit(1);
+}
+
+var remain_options = parsed.argv.remain;
+
+var pivotal_key = process.env.PIVOTAL_API_KEY;
+
+var options = {
+  from: 'normalized.json',
+  verbose: !parsed.silent
+};
+
+if (parsed.from) {
+  options.from = parsed.from;
+} else if (remain_options.length >= 1) {
+  options.from = remain_options[0];
+}
+
+var Pivotal = require('../lib/src/pivotal').Pivotal;
+var pivotal = new Pivotal(pivotal_key, options);
+
+if (remain_options[0] == "clean") {
+  pivotal.deleteAllStories();
+} else {
+  pivotal.run();
+}

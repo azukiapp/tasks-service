@@ -67,9 +67,9 @@ describe("Asana2Pivotal", function() {
       h.expect(task).to.have.property("subtasks");
       h.expect(task).to.have.property("attachments");
       h.expect(task).to.have.property("stories");
-      h.expect(task.subtasks.length).to.eql(3);
+      h.expect(task.subtasks.length   ).to.eql(3);
       h.expect(task.attachments.length).to.eql(1);
-      h.expect(task.stories.length).to.eql(4);
+      h.expect(task.stories.length    ).to.eql(5);
     });
 
     it('should replaced users from first task', function () {
@@ -88,24 +88,31 @@ describe("Asana2Pivotal", function() {
         workspace.stories = R.map(normalizedStories, workspace.tasks);
 
         should = {
-          asana_id     : 26782636061593,
           name         : "Blog Template - Sub-tasks",
           description  : "Teste de Menção @gullitmiranda.",
-          projectId   : "6451272",
-          currentState: "unstarted",
-          deadline     : "2015-04-10",
+          project_id   : "6451272",
+          current_state: "unstarted",
+          deadline     : "2015-04-10T00:00:00.000Z",
+          story_type   : "release"
         };
       });
 
       it('should main elements from first storie', function () {
         var storie = workspace.stories[0];
 
-        h.expect(storie.asana_id     ).to.deep.equal(should.asana_id     );
         h.expect(storie.name         ).to.deep.equal(should.name         );
         h.expect(storie.description  ).to.deep.equal(should.description  );
-        h.expect(storie.projectId    ).to.deep.equal(should.projectId   );
-        h.expect(storie.currentState ).to.deep.equal(should.currentState);
+        h.expect(storie.project_id   ).to.deep.equal(should.project_id   );
+        h.expect(storie.current_state).to.deep.equal(should.current_state);
         h.expect(storie.deadline     ).to.deep.equal(should.deadline     );
+        h.expect(storie.story_type   ).to.deep.equal(should.story_type   );
+      });
+
+      it('should no have deadline and story_type from first storie', function () {
+        var storie = workspace.stories[1];
+
+        h.expect(storie).to.not.have.property("deadline");
+        h.expect(storie).to.not.have.property("story_type");
       });
 
       it('should labels from first storie', function () {
@@ -131,11 +138,11 @@ describe("Asana2Pivotal", function() {
 
       it('should owners from first storie', function () {
         var storie = workspace.stories[0];
-        var ownerIds = [ 6598261, 3333333 ];
+        var owner_ids = [ 6598261, 3333333 ];
         // Gullit Miranda
         // Julio Saito
 
-        h.expect(storie.ownerIds).to.deep.equal(ownerIds);
+        h.expect(storie.owner_ids).to.deep.equal(owner_ids);
       });
 
       it('should comments from first storie', function () {
@@ -148,20 +155,23 @@ describe("Asana2Pivotal", function() {
             '&Signature=GJCt9bJQkEwb4UKmpyFQpidzngM%3D#_=_'].join('')
           ]
         }, {
-          personId: 2926078,
+          person_id: 2926078,
           text: ['O @heitor e o @julio testaram o https://atom.io/packages/motepair, ',
                 'que pode ser uma ferramente bem funcional e interessante.'].join('')
         }, {
-          personId: 3333333,
+          person_id: 3333333,
           text: ['sim, é bem legal. só que só funciona no atom. O atom por sua vez me ',
                 'parece cada dia mais utilizável.'].join('')
         }, {
-          personId: 5555555,
+          person_id: 5555555,
           text: ['Me intrometendo aí: ouvi falar muito bem desse plugin de Sublime.\n',
                 'http://teamremote.github.io/remote-sublime/'].join('')
         }, {
-          personId: 3333333,
+          person_id: 3333333,
           text: 'vamos testar!'
+        }, {
+          text: ['Resumo das características de `rsync` e `unison` https://bitbucket.org/azukiapp/',
+                'azk-internal-book/src/master/projetos/azk/file_sharing_sync_options.md'].join('')
         }, {
           text: "`[Draft post]:`with notes"
         }];

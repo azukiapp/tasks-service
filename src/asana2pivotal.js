@@ -145,27 +145,51 @@ export class Asana2Pivotal {
     }, labels);
 
     // array of object to array of ids
-    var ownerIds = R.map((owner) => owner.id, assignee.concat(owners));
+    var owner_ids = R.map((owner) => owner.id, assignee.concat(owners));
 
     // Clean duplicated
-    ownerIds = R.uniq(ownerIds);
+    owner_ids = R.uniq(owner_ids);
     labels = R.uniq(labels);
 
     // clean nil or empty
     labels = R.filter(((label) => !R.isNil(label) && !R.isEmpty(label)), labels);
 
-    return {
-      asana_id     : task.id,
+    // Clean invalid person_id in comments
+    var user_keys   = Object.keys(this.map.users);
+    var user_values = Object.values(this.map.users);
+    var removeInvalidPerson_ids = (comment) => {
+      if (comment.person_id) {
+        var result = R.contains(comment.person_id)(user_keys);
+        if (!result) {
+          var filterPersonId = R.propEq('pivotal_id', (comment.person_id || '').toString());
+          var pivotal_user   = R.find(filterPersonId)(user_values);
+
+          if (!pivotal_user) {
+            delete(comment.person_id);
+          }
+        }
+      }
+      return comment;
+    };
+    comments = R.map(removeInvalidPerson_ids, comments.concat(subtasks_comments));
+
+    var story = {
       name         : task.name,
       labels       : labels,
       description  : task.notes,
-      projectId   : projectMaped.pivotal_id,
-      currentState: projectMaped.state,
-      deadline     : task.due_on,
+      project_id   : projectMaped.pivotal_id,
+      current_state: projectMaped.state,
       tasks        : subtasks,
-      ownerIds     : ownerIds,
-      comments     : comments.concat(subtasks_comments)
+      owner_ids    : owner_ids,
+      comments     : comments
     };
+
+    if (!R.isNil(task.due_on)) {
+      story.deadline   = (new Date(task.due_on)).toISOString();
+      story.story_type = "release";
+    }
+
+    return story;
   }
 
   subtasksToTasks(tasks) {
@@ -194,7 +218,7 @@ export class Asana2Pivotal {
     var normalize = function(storie) {
       return {
         text: storie.text,
-        personId: storie.created_by.id
+        person_id: storie.created_by.id
       };
     };
     var stories = R.map(normalize, (task.stories || []));

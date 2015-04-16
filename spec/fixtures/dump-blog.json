@@ -127,6 +127,16 @@
             "id": 2404440692626,
             "name": "Julio Saito"
           }
+        },
+        {
+          "id": 25521849212821,
+          "created_at": "2015-01-29T19:46:32.821Z",
+          "type": "comment",
+          "text": "Resumo das características de `rsync` e `unison` https://bitbucket.org/azukiapp/azk-internal-book/src/master/projetos/azk/file_sharing_sync_options.md",
+          "created_by": {
+            "id": 20523512139495,
+            "name": "Lucas Fais"
+          }
         }
       ],
       "subtasks": [

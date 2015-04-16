@@ -9,6 +9,8 @@
   * [Normalize] Subtask description also becomes comment of a story;
   * [Normalize] Todas as histórias têm etiqueta com nome do projeto;
   * [Normalize] In some projects, the sections become labels;
+  * [Normalize] Remove invalid `person_id` from story comments;
+  * [Pivotal] Adding support to publish all stories to pivotal;
 
 ## v0.0.1 (2015-03-15)
 

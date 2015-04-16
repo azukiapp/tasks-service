@@ -13,7 +13,9 @@
     "url": "https://github.com/azukiapp/asana-pivotal.git"
   },
   "bin": {
-    "pull_asana"  : "./bin/pull_asana",
+    "normalize": "./bin/normalize",
+    "pull_asana": "./bin/pull_asana",
+    "push_pivotal": "./bin/push_pivotal"
   },
   "keywords": [
     "azk"
@@ -28,6 +30,7 @@
     "bluebird": "^2.9.24",
     "chalk": "^1.0.0",
     "nopt": "^3.0.1",
+    "pivotaljs": "^1.0.1",
     "prettyjson": "^1.1.0",
     "ramda": "^0.13.0",
     "source-map-support": "^0.2.10",
