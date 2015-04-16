@@ -1,0 +1,388 @@
+{
+  "id": 5135822594793,
+  "name": "Azuki",
+  "projects": [
+    {
+      "id": 6275359010324,
+      "name": "Blog"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 26782636061593,
+      "created_at": "2015-02-12T18:19:34.009Z",
+      "modified_at": "2015-04-12T02:04:27.041Z",
+      "name": "Blog Template - Sub-tasks",
+      "notes": "Teste de Menção https://app.asana.com/0/630894273054/630894273054.",
+      "completed": false,
+      "assignee_status": "upcoming",
+      "completed_at": null,
+      "due_on": "2015-04-10",
+      "workspace": {
+        "id": 5135822594793,
+        "name": "Azuki"
+      },
+      "num_hearts": 0,
+      "assignee": {
+        "id": 7682697740383,
+        "name": "Gullit Miranda"
+      },
+      "hearts": [],
+      "tags": [
+        {
+          "id": 31435545906895,
+          "name": "test"
+        },
+        {
+          "id": 31435545906897,
+          "name": "2tag"
+        },
+        {
+          "id": 31435545906899,
+          "name": "blog"
+        }
+      ],
+      "parent": null,
+      "hearted": false,
+      "projects": [
+        {
+          "id": 6275359010324,
+          "name": "Blog"
+        }
+      ],
+      "memberships": [
+        {
+          "project": {
+            "id": 6275359010324,
+            "name": "Blog"
+          },
+          "section": {
+            "id": 26782636061607,
+            "name": "TODO:"
+          }
+        }
+      ],
+      "followers": [
+        {
+          "id": 3376173914876,
+          "name": "Heitor Tashiro Sergent"
+        },
+        {
+          "id": 7682697740383,
+          "name": "Gullit Miranda"
+        }
+      ],
+      "attachments": [
+        {
+          "id": 31435545906894,
+          "created_at": "2015-04-12T01:03:42.196Z",
+          "name": "softwareengineer_7701382-655x280.jpg",
+          "permanent_url": "https://app.asana.com/app/asana/-/download_asset?asset_id=31435545906894",
+          "host": "asana",
+          "download_url": "https://s3.amazonaws.com:443/prod_object_assets/assets/31435545906893/softwareengineer_7701382-655x280.jpg?AWSAccessKeyId=AKIAI7NUHQYARXR2GGCQ&Expires=1428805953&Signature=GJCt9bJQkEwb4UKmpyFQpidzngM%3D#_=_",
+          "view_url": "https://s3.amazonaws.com:443/prod_object_assets/assets/31435545906893/softwareengineer_7701382-655x280.jpg?AWSAccessKeyId=AKIAI7NUHQYARXR2GGCQ&Expires=1428805953&Signature=GJCt9bJQkEwb4UKmpyFQpidzngM%3D#_=_",
+          "parent": {
+            "id": 26782636061593,
+            "name": "Blog Template - Sub-tasks"
+          }
+        }
+      ],
+      "stories": [
+        {
+          "id": 29123039231127,
+          "created_at": "2015-03-12T17:40:55.630Z",
+          "created_by": {
+            "id": 1860174641479,
+            "name": "Éverton Ribeiro"
+          },
+          "type": "comment",
+          "text": "O https://app.asana.com/0/2332320534624/2332320534624 e o https://app.asana.com/0/664580382873/664580382873 testaram o https://atom.io/packages/motepair, que pode ser uma ferramente bem funcional e interessante."
+        },
+        {
+          "id": 29259895936090,
+          "created_at": "2015-03-13T23:26:43.783Z",
+          "type": "comment",
+          "text": "sim, é bem legal. só que só funciona no atom. O atom por sua vez me parece cada dia mais utilizável.",
+          "created_by": {
+            "id": 2404440692626,
+            "name": "Julio Saito"
+          }
+        },
+        {
+          "id": 29583300855470,
+          "created_at": "2015-03-18T20:44:53.446Z",
+          "type": "comment",
+          "text": "Me intrometendo aí: ouvi falar muito bem desse plugin de Sublime.\nhttp://teamremote.github.io/remote-sublime/",
+          "created_by": {
+            "id": 3543978773523,
+            "name": "Marcus Gadbem"
+          }
+        },
+        {
+          "id": 29712819576846,
+          "created_at": "2015-03-20T04:13:21.261Z",
+          "type": "comment",
+          "text": "vamos testar!",
+          "created_by": {
+            "id": 2404440692626,
+            "name": "Julio Saito"
+          }
+        }
+      ],
+      "subtasks": [
+        {
+          "id": 26782636061594,
+          "created_at": "2015-02-12T18:19:34.015Z",
+          "modified_at": "2015-02-12T18:19:34.015Z",
+          "name": "Draft post",
+          "notes": "with notes",
+          "completed": false,
+          "assignee_status": "upcoming",
+          "completed_at": null,
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": {
+            "id": 7682697740383,
+            "name": "Gullit Miranda"
+          },
+          "parent": {
+            "id": 26782636061593,
+            "name": "Blog Template - Sub-tasks"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3376173914876,
+              "name": "Heitor Tashiro Sergent"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 26782636061596,
+          "created_at": "2015-02-12T18:19:34.030Z",
+          "modified_at": "2015-02-12T18:19:34.030Z",
+          "name": "Review/final edits",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": null,
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 26782636061593,
+            "name": "Blog Template - Sub-tasks"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3376173914876,
+              "name": "Heitor Tashiro Sergent"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31433313354246,
+          "created_at": "2015-04-11T17:49:58.512Z",
+          "modified_at": "2015-04-11T17:50:32.142Z",
+          "name": "modificar insight para permitir verificação de erros caso necessário",
+          "notes": "",
+          "completed": false,
+          "assignee_status": "inbox",
+          "completed_at": null,
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "assignee": {
+            "id": 2404440692626,
+            "name": "Julio Saito"
+          },
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        }
+      ]
+    },
+    {
+      "id": 26782636061607,
+      "created_at": "2015-02-12T18:19:34.080Z",
+      "modified_at": "2015-04-11T21:19:15.211Z",
+      "name": "Going live this week:",
+      "notes": "",
+      "completed": false,
+      "assignee_status": "upcoming",
+      "completed_at": null,
+      "due_on": null,
+      "due_at": null,
+      "workspace": {
+        "id": 5135822594793,
+        "name": "Azuki"
+      },
+      "num_hearts": 0,
+      "assignee": null,
+      "parent": null,
+      "hearts": [],
+      "tags": [],
+      "hearted": false,
+      "projects": [
+        {
+          "id": 6275359010324,
+          "name": "Blog"
+        }
+      ],
+      "memberships": [
+        {
+          "section": {
+            "id": 26782636061607,
+            "name": "Progress:"
+          },
+          "project": {
+            "id": 6275359010324,
+            "name": "Blog"
+          }
+        }
+      ],
+      "followers": [
+        {
+          "id": 3376173914876,
+          "name": "Heitor Tashiro Sergent"
+        }
+      ],
+      "attachments": [],
+      "stories": [],
+      "subtasks": []
+    },
+    {
+      "id": 26782636061611,
+      "created_at": "2015-02-12T18:19:34.097Z",
+      "modified_at": "2015-02-12T18:19:34.097Z",
+      "name": "Upcoming posts:",
+      "notes": "",
+      "completed": false,
+      "assignee_status": "upcoming",
+      "completed_at": null,
+      "due_on": null,
+      "due_at": null,
+      "workspace": {
+        "id": 5135822594793,
+        "name": "Azuki"
+      },
+      "num_hearts": 0,
+      "assignee": null,
+      "parent": null,
+      "hearts": [],
+      "tags": [],
+      "hearted": false,
+      "projects": [
+        {
+          "id": 6275359010324,
+          "name": "Blog"
+        }
+      ],
+      "memberships": [
+        {
+          "section": {
+            "id": 26782636061611,
+            "name": "Review:"
+          },
+          "project": {
+            "id": 6275359010324,
+            "name": "Blog"
+          }
+        }
+      ],
+      "followers": [
+        {
+          "id": 3376173914876,
+          "name": "Heitor Tashiro Sergent"
+        }
+      ],
+      "attachments": [],
+      "stories": [],
+      "subtasks": []
+    },
+    {
+      "id": 28536317409180,
+      "created_at": "2015-03-05T21:22:46.057Z",
+      "modified_at": "2015-03-31T00:26:19.606Z",
+      "name": "Folow up",
+      "notes": "",
+      "completed": true,
+      "assignee_status": "later",
+      "completed_at": "2015-03-31T00:26:59.225Z",
+      "due_on": null,
+      "due_at": null,
+      "workspace": {
+        "id": 5135822594793,
+        "name": "Azuki"
+      },
+      "num_hearts": 0,
+      "assignee": null,
+      "hearts": [],
+      "projects": [],
+      "memberships": [],
+      "tags": [],
+      "hearted": false,
+      "parent": {
+        "id": 28536317409177,
+        "name": "Crowdfuding Mercadolivre"
+      },
+      "followers": [
+        {
+          "id": 1860174641479,
+          "name": "Éverton Ribeiro"
+        },
+        {
+          "id": 7682697740383,
+          "name": "Gullit Miranda"
+        }
+      ],
+      "attachments": [],
+      "stories": [],
+      "subtasks": []
+    }
+  ]
+}

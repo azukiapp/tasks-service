@@ -1,6 +1,6 @@
 {
   "name": "asana-pivotal",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "asana-pivotal",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,8 @@
     "nopt": "^3.0.1",
     "prettyjson": "^1.1.0",
     "ramda": "^0.13.0",
-    "source-map-support": "^0.2.10"
+    "source-map-support": "^0.2.10",
+    "strip-json-comments": "^1.0.2"
   },
   "devDependencies": {
     "azk-dev": "0.0.14",

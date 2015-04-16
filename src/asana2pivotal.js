@@ -1,0 +1,204 @@
+import utils from "./utils";
+
+// Dependencies
+var R        = require("ramda");
+var BPromise = require("bluebird");
+var path     = require("path");
+var fs       = BPromise.promisifyAll(require("fs"));
+var stripJsonComments = require("strip-json-comments");
+
+// Log
+var chalk = require('chalk');
+
+export class Asana2Pivotal {
+  constructor(options) {
+    options = R.merge({
+      from  : 'debug.json',
+      to    : 'normalized.json',
+      config: 'map.json'
+    }, options);
+
+    if (options.verbose) {
+      utils.verbose = options.verbose;
+    }
+
+    options.from   = path.resolve(process.cwd(), options.from);
+    options.to     = path.resolve(process.cwd(), options.to);
+    options.config = path.resolve(process.cwd(), options.config);
+
+    this.map     = this.readMapFile(options.config);
+    this.options = options;
+  }
+
+  readMapFile(filepath) {
+    filepath = filepath || this.options.map;
+    var content;
+
+    try {
+      content = stripJsonComments(fs.readFileSync(filepath).toString());
+      content = JSON.parse(content);
+    } catch (e) {
+      console.error("unable to read Map file, because: ", e.message);
+    }
+    return content;
+  }
+
+  run() {
+    return BPromise.coroutine(function* () {
+      var workspace, json, stories;
+
+      json = yield this.readFile();
+      json = this.replaceUsers(json);
+
+      workspace = JSON.parse(json);
+
+      if (R.is(Object, workspace) && !R.isEmpty(workspace.tasks)) {
+        stories = workspace.tasks.map(this.taskToStorie.bind(this));
+      }
+
+      var normalized_json = JSON.stringify(stories, null, 2);
+      this.saveFile(normalized_json);
+
+      return stories;
+    }.bind(this))();
+  }
+
+  readFile(filepath) {
+    filepath = filepath || this.options.from;
+    return fs.readFileAsync(filepath)
+      .then(function (data) {
+        utils.log("Successful read file " + chalk.green(filepath));
+        return data.toString();
+      })
+      .catch(BPromise.OperationalError, function (e) {
+        console.error("unable to read file, because: ", e.message);
+      });
+  }
+
+  saveFile(json) {
+    var filepath = this.options.to;
+    fs.writeFileAsync(filepath, json)
+      .then(function() {
+        utils.log("Successful saved file " + chalk.green(filepath));
+      });
+  }
+
+  replaceUsers(json) {
+    var asana_ids = Object.keys(this.map.users);
+
+    for (var i = 0; asana_ids.length > i; i++) {
+      var user_id = asana_ids[i];
+      var user    = this.map.users[user_id];
+
+      // Mention Replaces
+      var url   = 'https://app.asana.com/0/' + user.mention_id + '/' + user.mention_id;
+      var regex = new RegExp(url, "gm");
+      json = json.replace(regex, '@' + user.username);
+
+      // UserID replace
+      regex = new RegExp(user_id, "gm");
+      json  = json.replace(regex, user.pivotal_id);
+    }
+
+    return json;
+  }
+
+  projectMap(task) {
+    var projectMaped = this.map.defaults.projects;
+
+    if (!R.isEmpty(task.projects) && !R.isEmpty(task.projects[0])) {
+      projectMaped = this.map.projects[task.projects[0].id] || projectMaped;
+    }
+
+    // Replaces the state based in section
+    var membership = R.find(R.prop('section'))(task.memberships);
+    var section    = (membership && membership.section.name);
+    if (!R.isNil(section) && this.map.sections.hasOwnProperty(section)) {
+      var sectionMaped = this.map.sections[section];
+      if (!R.isNil(sectionMaped)) {
+        if (sectionMaped.hasOwnProperty("state")) {
+          projectMaped.state = sectionMaped.state;
+        }
+        if (sectionMaped.hasOwnProperty("labels") && R.isArrayLike(sectionMaped.labels)) {
+          projectMaped.labels = projectMaped.labels.concat(sectionMaped.labels);
+        }
+      }
+    }
+
+    return projectMaped;
+  }
+
+  taskToStorie(task) {
+    var projectMaped = this.projectMap(task);
+    var comments     = this.comments(task);
+    var assignee     = (task.assignee) ? [task.assignee] : [];
+    var labels       = projectMaped.labels.concat(task.tags);
+
+    var [subtasks, owners, subtasks_comments] = this.subtasksToTasks(task.subtasks);
+    labels = R.map((label) => {
+      if (R.is(Object, label) && label.hasOwnProperty('name')) {
+        label = label.name;
+      } else if (!R.is(String, label)) {
+        label = null;
+      }
+      return label;
+    }, labels);
+    // Clean duplicated
+    owners = R.uniqWith(((a, b) => a.id === b.id))(assignee.concat(owners));
+    labels = R.uniqWith(((a, b) => a === b))(labels);
+
+    // clean nil or empty
+    labels = R.filter(((label) => !R.isNil(label) && !R.isEmpty(label)), labels);
+
+    return {
+      asana_id     : task.id,
+      name         : task.name,
+      labels       : labels,
+      description  : task.notes,
+      project_id   : projectMaped.pivotal_id,
+      current_state: projectMaped.state,
+      deadline     : task.due_on,
+      tasks        : subtasks,
+      owners       : owners,
+      comments     : comments.concat(subtasks_comments)
+    };
+  }
+
+  subtasksToTasks(tasks) {
+    var assignees     = [];
+    var descriptions  = [];
+    var normalize = function(subtask) {
+      if (!R.isEmpty(subtask.notes)) {
+        descriptions.push({
+          text: '`[' + subtask.name + ']:`' + subtask.notes
+        });
+      }
+
+      if (subtask.assignee) { assignees.push(subtask.assignee); }
+
+      return {
+        description: subtask.name,
+        complete   : !!subtask.completed
+      };
+    };
+    var subtasks = R.map(normalize, tasks);
+    return [subtasks, assignees, descriptions];
+  }
+
+  comments(task) {
+    // stories (comments)
+    var normalize = function(storie) {
+      return {
+        text: storie.text,
+        person_id: storie.created_by.id
+      };
+    };
+    var stories = R.map(normalize, (task.stories || []));
+
+    // attachments
+    var attachments = R.map(((attach) => attach.download_url), (task.attachments || []));
+    attachments = (!R.isEmpty(attachments)) ? [{ file_attachments: attachments }] : [];
+
+    return attachments.concat(stories);
+  }
+}

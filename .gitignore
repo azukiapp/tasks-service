@@ -34,3 +34,4 @@ lib/
 .azk/
 .env
 **/.env
+**/*.json

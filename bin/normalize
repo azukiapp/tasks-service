@@ -1,0 +1,84 @@
+#!/usr/bin/env node
+/*jslint evil: true */
+require('source-map-support').install();
+
+var nopt = require('nopt');
+
+var knownOpts = {
+  'from'  : String,
+  'output': String,
+  'config': String,
+  'help'  : Boolean,
+  'silent': Boolean
+};
+
+var shortHands = {
+  'o': ['--output'],
+  'f': ['--from'],
+  'c': ['--config'],
+  '?': ['--help'],
+  'h': ['--help'],
+  's': ['--silent']
+};
+
+// everything is optional.
+// knownOpts and shorthands default to {}
+// arg list defaults to process.argv
+// slice defaults to 2
+var parsed = nopt(knownOpts, shortHands, process.argv, 2);
+
+if (parsed.help) {
+  var usage_message = ['',
+    ' Usage:',
+    '',
+    '   $ normalize [options] [from] [output]',
+    '',
+    ' Options:',
+    '',
+    '   --from, -f       Origin filename (default: debug.json)',
+    '   --output, -o     Filename to output normalized file (default: normalized.json)',
+    '   --config, -c     Filename with map data (default: map.json)',
+    '   --help, -h, -?   show this help message',
+    '   --silent, -s     disale more infos',
+    '',
+    ' Examples:',
+    '',
+    '   $ normalize debug.json',
+    '   $ normalize debug.json normalized.json',
+    '   $ normalize --from debug.json --output normalized.json',
+    ''
+  ].join('\n');
+
+  console.log(usage_message);
+  process.exit(1);
+}
+
+var remain_options = parsed.argv.remain;
+
+var options = {
+  from   : 'debug.json',
+  to     : 'normalized.json',
+  config : 'map.json',
+  verbose: !parsed.silent
+};
+
+if (parsed.from) {
+  options.from = parsed.output;
+  if (remain_options.length >= 1) {
+    options.to = remain_options[0];
+  }
+  if (remain_options.length >= 2) {
+    options.config = remain_options[1];
+  }
+} else if (remain_options.length >= 1) {
+  options.from = remain_options[0];
+  if (remain_options.length > 1) {
+    options.to = remain_options[1];
+  }
+  if (remain_options.length > 2) {
+    options.config = remain_options[2];
+  }
+}
+
+var Asana2Pivotal = require('../lib/src/asana2pivotal').Asana2Pivotal;
+(new Asana2Pivotal(options)).run();
