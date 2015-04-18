@@ -224,7 +224,12 @@ export class Asana2Pivotal {
     var stories = R.map(normalize, (task.stories || []));
 
     // attachments
-    var attachments = R.map(((attach) => attach.download_url), (task.attachments || []));
+    var attachments = R.map(((attach) => {
+      return {
+        name: attach.name,
+        url : attach.download_url
+      };
+    }), (task.attachments || []));
     attachments = (!R.isEmpty(attachments)) ? [{ file_attachments: attachments }] : [];
 
     return attachments.concat(stories);

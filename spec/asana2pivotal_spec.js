@@ -159,10 +159,13 @@ describe("Asana2Pivotal", function() {
         var storie = workspace.stories[0];
         var comments = [{
           file_attachments: [
-            ['https://s3.amazonaws.com:443/prod_object_assets/assets/',
-            '31435545906893/softwareengineer_7701382-655x280.jpg',
-            '?AWSAccessKeyId=AKIAI7NUHQYARXR2GGCQ&Expires=1428805953',
-            '&Signature=GJCt9bJQkEwb4UKmpyFQpidzngM%3D#_=_'].join('')
+            {
+              name: "softwareengineer_7701382-655x280.jpg",
+              url: ['https://s3.amazonaws.com:443/prod_object_assets/assets/',
+                    '31435545906893/softwareengineer_7701382-655x280.jpg',
+                    '?AWSAccessKeyId=AKIAI7NUHQYARXR2GGCQ&Expires=1428805953',
+                    '&Signature=GJCt9bJQkEwb4UKmpyFQpidzngM%3D#_=_'].join('')
+            }
           ]
         }, {
           person_id: 2926078,

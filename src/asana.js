@@ -51,7 +51,8 @@ export class Asana {
 
     return BPromise.coroutine(function* () {
       task = yield this.client.tasks.findById(task.id);
-      var attachments = yield this._attachmentsByTaskId(task.id);
+      var attachments = [];
+      // var attachments = yield this._attachmentsByTaskId(task.id);
       var stories     = yield this._storiesByTaskId(task.id);
       var subtasks    = yield this._subtasksByTaskID(task.id);
 

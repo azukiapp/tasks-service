@@ -35,3 +35,4 @@ lib/
 .env
 **/.env
 **/*.json
+tmp/
