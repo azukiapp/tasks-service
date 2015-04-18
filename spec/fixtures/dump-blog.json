@@ -393,6 +393,1543 @@
       "attachments": [],
       "stories": [],
       "subtasks": []
+    },
+    {
+      "id": 30231396931360,
+      "created_at": "2015-03-26T23:45:26.835Z",
+      "modified_at": "2015-04-17T18:11:36.764Z",
+      "name": "azk Analytics",
+      "notes": "tracking do `azk`:\nhttps://docs.google.com/document/d/1JbnoUKBN7ocbCfTI73GeLKq3ouiK9daXmUuj_32F-7M/edit#\n\nresetar pergunta:\nazk nvm node -e 'meta = require(\"azk\").meta; meta.del(\"tracker_permission\")'\n\nrm ~/.azk/data/.azk/analytics/tracker_permission\nexport ANALYTICS_DATA=2 ANALYTICS_ERRORS=1\nazk56\n\ninsight modificado para suportar Keen-io:\nhttps://github.com/azukiapp/insight-keen-io\n\ndados teste no Keen-io:\nhttps://keen.io/project/5526968d672e6c5a0d0ebec6#\n\nno root do azk:\n$> rm -rf node_modules/insight-keen-io\n$> ln -sf ../../insight-keen-io node_modules\n\ntest-watch do insight:\n$> npm run-script test-watch;",
+      "completed": true,
+      "assignee_status": "inbox",
+      "completed_at": "2015-04-17T18:11:36.075Z",
+      "due_on": null,
+      "due_at": null,
+      "workspace": {
+        "id": 5135822594793,
+        "name": "Azuki"
+      },
+      "num_hearts": 0,
+      "hearts": [],
+      "parent": null,
+      "hearted": false,
+      "tags": [
+        {
+          "id": 21487403014461,
+          "name": "azk"
+        },
+        {
+          "id": 30231396931355,
+          "name": "analytics"
+        }
+      ],
+      "projects": [
+        {
+          "id": 6342365893977,
+          "name": "Brainstorm"
+        },
+        {
+          "id": 30378621973044,
+          "name": "[sprint] #08 - mar 2015 (30 ao 10)"
+        }
+      ],
+      "memberships": [
+        {
+          "project": {
+            "id": 6342365893977,
+            "name": "Brainstorm"
+          },
+          "section": {
+            "id": 29123039231102,
+            "name": "Ferramentas:"
+          }
+        },
+        {
+          "project": {
+            "id": 30378621973044,
+            "name": "[sprint] #08 - mar 2015 (30 ao 10)"
+          },
+          "section": {
+            "id": 22685590953098,
+            "name": "Review:"
+          }
+        }
+      ],
+      "assignee": {
+        "id": 3543978773523,
+        "name": "Marcus Gadbem"
+      },
+      "followers": [
+        {
+          "id": 3543978773523,
+          "name": "Marcus Gadbem"
+        },
+        {
+          "id": 2404440692626,
+          "name": "Julio Saito"
+        }
+      ],
+      "attachments": [],
+      "stories": [
+        {
+          "id": 30231396931372,
+          "created_at": "2015-03-26T23:50:53.309Z",
+          "type": "comment",
+          "text": "Yeoman/Bower style:\nhttps://www.npmjs.com/package/insight \nhttps://github.com/bower/bower/blob/master/lib%2Futil%2Fanalytics.js\n\nHá opção de construir (sem muitas complexidades) um provider para o Chartbeat.com, por exemplo:\nhttps://github.com/yeoman/insight/blob/master/lib%2Fproviders.js\n\nChatbeat:\nhttps://chartbeat.com/\nhttps://chartbeat.com/demo/\nhttps://chartbeat.com/docs/api",
+          "created_by": {
+            "id": 3543978773523,
+            "name": "Marcus Gadbem"
+          }
+        },
+        {
+          "id": 31754660563792,
+          "created_at": "2015-04-15T16:25:36.477Z",
+          "type": "comment",
+          "text": "timastamp do keen.io https://keen.io/docs/event-data-modeling/event-data-intro/#id9",
+          "created_by": {
+            "id": 2404440692626,
+            "name": "Julio Saito"
+          }
+        }
+      ],
+      "subtasks": [
+        {
+          "id": 30231396931368,
+          "created_at": "2015-03-26T23:48:48.646Z",
+          "modified_at": "2015-04-10T20:42:16.898Z",
+          "name": "`Insight` providers (G. Analytics / Chatbeat / ...)",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-10T20:42:14.890Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": {
+            "id": 7682697740383,
+            "name": "Gullit Miranda"
+          },
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31383019148008,
+          "created_at": "2015-04-10T20:42:19.604Z",
+          "modified_at": "2015-04-10T20:42:48.348Z",
+          "name": "Definição do serviço de Métrica (Keen.io)",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-10T20:42:45.945Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31433313354244,
+          "created_at": "2015-04-11T17:49:48.998Z",
+          "modified_at": "2015-04-11T17:50:27.534Z",
+          "name": "criar classe Tracker no azk",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-11T17:50:23.762Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31433313354246,
+          "created_at": "2015-04-11T17:49:58.512Z",
+          "modified_at": "2015-04-13T11:20:09.310Z",
+          "name": "modificar insight para permitir verificação de erros caso necessário",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "inbox",
+          "completed_at": "2015-04-13T11:20:08.666Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "assignee": {
+            "id": 2404440692626,
+            "name": "Julio Saito"
+          },
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31383019148023,
+          "created_at": "2015-04-10T20:47:08.714Z",
+          "modified_at": "2015-04-13T11:20:17.023Z",
+          "name": "Construir \"meta\" a ser enviado em cada evento",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-13T11:20:16.615Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31476872458777,
+          "created_at": "2015-04-13T11:21:38.337Z",
+          "modified_at": "2015-04-13T11:22:09.429Z",
+          "name": "track agent start",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-13T11:22:09.076Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31476872458779,
+          "created_at": "2015-04-13T11:21:48.477Z",
+          "modified_at": "2015-04-13T11:22:09.984Z",
+          "name": "track agent stop",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-13T11:22:09.637Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31388492425665,
+          "created_at": "2015-04-10T20:42:28.146Z",
+          "modified_at": "2015-04-13T11:22:56.850Z",
+          "name": "gerar um id único por comando (CLI) e associar os contextos (azk start) - command",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-13T11:22:56.069Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31388492425667,
+          "created_at": "2015-04-10T20:42:28.165Z",
+          "modified_at": "2015-04-13T11:23:03.280Z",
+          "name": "capturar hardware (os, process, memory, sys lang, ip)",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-13T11:23:02.912Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31388492425677,
+          "created_at": "2015-04-10T20:44:25.326Z",
+          "modified_at": "2015-04-15T00:57:52.493Z",
+          "name": "Perguntar ao usuário se permite ser trackeado (CLI)",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "inbox",
+          "completed_at": "2015-04-15T00:57:51.792Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "assignee": {
+            "id": 2404440692626,
+            "name": "Julio Saito"
+          },
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31476872458781,
+          "created_at": "2015-04-13T11:21:53.444Z",
+          "modified_at": "2015-04-13T15:15:52.434Z",
+          "name": "Tracker: salvar session_id  (azk agent start) - configure",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-13T15:15:51.292Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31476872458783,
+          "created_at": "2015-04-13T11:22:01.338Z",
+          "modified_at": "2015-04-13T15:15:52.915Z",
+          "name": "Tracker: carregar session_id  (todos comandos)",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-13T15:15:51.857Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31383019148011,
+          "created_at": "2015-04-10T20:43:24.429Z",
+          "modified_at": "2015-04-15T00:58:09.492Z",
+          "name": "pegar manifest-id",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-15T00:58:09.007Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31476872458795,
+          "created_at": "2015-04-13T15:16:24.713Z",
+          "modified_at": "2015-04-15T03:57:22.153Z",
+          "name": "pegar informações do Docker",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-15T03:57:21.435Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31679853862770,
+          "created_at": "2015-04-15T02:49:18.814Z",
+          "modified_at": "2015-04-15T04:24:14.806Z",
+          "name": "criar user_id único",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "inbox",
+          "completed_at": "2015-04-15T04:24:14.323Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "assignee": {
+            "id": 3543978773523,
+            "name": "Marcus Gadbem"
+          },
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            },
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31388492425673,
+          "created_at": "2015-04-10T20:42:28.232Z",
+          "modified_at": "2015-04-15T04:59:18.823Z",
+          "name": "pegar imagem dos sistemas levantados",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-15T04:59:17.913Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31679853862757,
+          "created_at": "2015-04-15T01:54:38.699Z",
+          "modified_at": "2015-04-15T04:24:09.272Z",
+          "name": "não enviar eventos repetidos (ex: azk stop; azk stop)",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-15T04:24:08.404Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31679853862755,
+          "created_at": "2015-04-15T01:47:30.644Z",
+          "modified_at": "2015-04-15T02:00:41.208Z",
+          "name": "verificar fila do tracker",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-15T02:00:40.382Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31697415297300,
+          "created_at": "2015-04-15T04:46:07.052Z",
+          "modified_at": "2015-04-15T17:25:38.227Z",
+          "name": "BUG mesmo command id - yield this.tracker.saveCommandId(); vs tracker.loadMetadata()",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "inbox",
+          "completed_at": "2015-04-15T17:25:37.680Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "assignee": {
+            "id": 2404440692626,
+            "name": "Julio Saito"
+          },
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            },
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31754660563796,
+          "created_at": "2015-04-15T17:05:00.985Z",
+          "modified_at": "2015-04-15T17:24:46.821Z",
+          "name": "BUG não pega o valor correto em should_track",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-15T17:24:46.236Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31476872458791,
+          "created_at": "2015-04-13T11:36:29.853Z",
+          "modified_at": "2015-04-15T16:53:54.408Z",
+          "name": "gravar o time_stamp real do evento no keen",
+          "notes": "Isso será útil para podermos enviar o evento quando voltar a conexão.\n\n\"keen.created_at is a timestamp when the data reaches the Keen IO servers. It's set by Keen IO and cannot be overwritten.\nkeen.timestamp is the time the event actually occurred. The client can set this value to whatever time it wants. If no value for keen.timestamp is provided, it's also set to the time that Keen IO receives the data. \n\nOverwriting keen.timestamp is useful for applications that batch and send historical data, or aren't online all the time (example: mobile apps). \"\n\nhttps://groups.google.com/forum/#!searchin/keen-io-devs/created_at/keen-io-devs/BQ9rQfHExtk/lvk5LOeutygJ",
+          "completed": true,
+          "assignee_status": "inbox",
+          "completed_at": "2015-04-15T16:53:53.549Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "assignee": {
+            "id": 2404440692626,
+            "name": "Julio Saito"
+          },
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31680433136097,
+          "created_at": "2015-04-15T00:59:03.187Z",
+          "modified_at": "2015-04-15T19:20:09.837Z",
+          "name": "tratar erros do Tracker p/ não estourar nenhum erro",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-15T19:20:09.095Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31679853862749,
+          "created_at": "2015-04-15T01:00:58.797Z",
+          "modified_at": "2015-04-15T19:20:21.522Z",
+          "name": "remover console.log do tracker -> log.debug",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-15T19:20:21.068Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31383019148021,
+          "created_at": "2015-04-10T20:45:03.312Z",
+          "modified_at": "2015-04-10T20:45:08.813Z",
+          "name": "In Progress:",
+          "notes": "",
+          "completed": false,
+          "assignee_status": "upcoming",
+          "completed_at": null,
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31383019148017,
+          "created_at": "2015-04-10T20:44:58.509Z",
+          "modified_at": "2015-04-10T20:45:11.721Z",
+          "name": "TODO:",
+          "notes": "",
+          "completed": false,
+          "assignee_status": "upcoming",
+          "completed_at": null,
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31679853862760,
+          "created_at": "2015-04-15T02:00:41.685Z",
+          "modified_at": "2015-04-15T19:39:44.820Z",
+          "name": "[! precisa alterar o ConfigStore] alterar insight para gravar fila na pasta data do azk",
+          "notes": "",
+          "completed": false,
+          "assignee_status": "upcoming",
+          "completed_at": null,
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31754660563802,
+          "created_at": "2015-04-15T19:41:37.375Z",
+          "modified_at": "2015-04-15T20:50:12.773Z",
+          "name": "definir mensagem que pergunta se o usuário quer ser trackeado",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-15T20:50:12.384Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31779361386074,
+          "created_at": "2015-04-15T20:57:18.989Z",
+          "modified_at": "2015-04-16T01:05:00.804Z",
+          "name": "gerar command_id fora do loadMetadata() p/ o caso de 2 sessões do azk (outra aba)",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-16T01:05:00.204Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31779361386078,
+          "created_at": "2015-04-15T20:59:15.130Z",
+          "modified_at": "2015-04-16T01:04:51.265Z",
+          "name": "trocar sistema de loadMetadata p/ default() (estilo Docker)",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-16T01:04:50.527Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31680433136093,
+          "created_at": "2015-04-15T00:58:30.739Z",
+          "modified_at": "2015-04-16T02:10:49.852Z",
+          "name": "trocar data store do tracker pelo meta",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "inbox",
+          "completed_at": "2015-04-16T02:10:48.854Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": {
+            "id": 1860174641479,
+            "name": "Éverton Ribeiro"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            },
+            {
+              "id": 1860174641479,
+              "name": "Éverton Ribeiro"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31679853862762,
+          "created_at": "2015-04-15T02:31:35.297Z",
+          "modified_at": "2015-04-16T03:42:34.054Z",
+          "name": "!ERROR: Docker info e version no azk agent start",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "inbox",
+          "completed_at": "2015-04-16T03:42:33.626Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": {
+            "id": 1860174641479,
+            "name": "Éverton Ribeiro"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            },
+            {
+              "id": 1860174641479,
+              "name": "Éverton Ribeiro"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31754660563804,
+          "created_at": "2015-04-15T20:37:22.386Z",
+          "modified_at": "2015-04-16T21:44:18.337Z",
+          "name": "tracker resposta de SIM por aceitar ser trackeado",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-16T21:44:18.028Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31754660563806,
+          "created_at": "2015-04-15T20:49:44.852Z",
+          "modified_at": "2015-04-16T06:05:50.955Z",
+          "name": "agent stop não está rolando o tracking do comando",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "inbox",
+          "completed_at": "2015-04-16T06:05:50.324Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": {
+            "id": 1860174641479,
+            "name": "Éverton Ribeiro"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            },
+            {
+              "id": 1860174641479,
+              "name": "Éverton Ribeiro"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31679853862767,
+          "created_at": "2015-04-15T02:34:01.190Z",
+          "modified_at": "2015-04-17T18:08:40.279Z",
+          "name": "integrar com o azk-dev do 0.12",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "inbox",
+          "completed_at": "2015-04-17T18:08:39.727Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": {
+            "id": 1860174641479,
+            "name": "Éverton Ribeiro"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            },
+            {
+              "id": 1860174641479,
+              "name": "Éverton Ribeiro"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31796204414942,
+          "created_at": "2015-04-16T02:08:56.679Z",
+          "modified_at": "2015-04-16T21:44:25.539Z",
+          "name": "criar ENV var que desabilita o push p/ o keen.io (for development time)",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-16T21:44:25.210Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31796204414947,
+          "created_at": "2015-04-16T02:19:06.466Z",
+          "modified_at": "2015-04-16T21:44:29.682Z",
+          "name": "documentar \"postal\" ao changelog",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "upcoming",
+          "completed_at": "2015-04-16T21:44:29.379Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "assignee": null,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "followers": [
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31679853862751,
+          "created_at": "2015-04-15T01:31:21.657Z",
+          "modified_at": "2015-04-16T21:44:39.218Z",
+          "name": "atualizar as chaves do keen-io",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "inbox",
+          "completed_at": "2015-04-16T21:44:38.882Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "assignee": {
+            "id": 3376173914876,
+            "name": "Heitor Tashiro Sergent"
+          },
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            },
+            {
+              "id": 3376173914876,
+              "name": "Heitor Tashiro Sergent"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        },
+        {
+          "id": 31754660563786,
+          "created_at": "2015-04-15T16:18:34.321Z",
+          "modified_at": "2015-04-16T21:44:43.727Z",
+          "name": "traduzir o azk/CHANGELOG-WIP.md, apagar e atualizar o CHANGELOG",
+          "notes": "",
+          "completed": true,
+          "assignee_status": "inbox",
+          "completed_at": "2015-04-16T21:44:43.327Z",
+          "due_on": null,
+          "due_at": null,
+          "workspace": {
+            "id": 5135822594793,
+            "name": "Azuki"
+          },
+          "num_hearts": 0,
+          "parent": {
+            "id": 30231396931360,
+            "name": "azk Analytics"
+          },
+          "hearts": [],
+          "projects": [],
+          "memberships": [],
+          "tags": [],
+          "hearted": false,
+          "assignee": {
+            "id": 3543978773523,
+            "name": "Marcus Gadbem"
+          },
+          "followers": [
+            {
+              "id": 2404440692626,
+              "name": "Julio Saito"
+            },
+            {
+              "id": 3543978773523,
+              "name": "Marcus Gadbem"
+            }
+          ],
+          "attachments": [],
+          "stories": [],
+          "subtasks": []
+        }
+      ]
     }
   ]
 }

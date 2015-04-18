@@ -5,14 +5,13 @@
   "users": {
     // asanaUserID: { }
     // e.g.: 1234567: { username: "username", pivotal_id: "1111111", mention_id: "9876543" }
-    "1860174641479" : { "username": "evribeiro"     , "pivotal_id": "2926078", "mention_id": "8296623511705" }, // Everton
-    "6565167312510" : { "username": "mario"         , "pivotal_id": "1111111", "mention_id": "7852362880949" }, // Mario
-    "7682697740383" : { "username": "gullitmiranda" , "pivotal_id": "6598261", "mention_id": "630894273054"  }, // Gullit
-    "3376173914876" : { "username": "heitor"        , "pivotal_id": "2222222", "mention_id": "2332320534624" }, // Heitor
-    "2404440692626" : { "username": "julio"         , "pivotal_id": "3333333", "mention_id": "664580382873"  }, // Julio
-    "1961837930139" : { "username": "felipe"        , "pivotal_id": "4444444", "mention_id": "1842692710925" }, // Felipe
-    "3543978773523" : { "username": "marcus"        , "pivotal_id": "5555555", "mention_id": "6190260436851" }, // Marcus
-    "7607343581039" : { "username": "mv"            , "pivotal_id": "6666666", "mention_id": "9070799611508" }  // MV
+    "1860174641479" : { "username": "evribeiro"     , "pivotal_id": "2926078", "mention_id": "8296623511705" },
+    "6565167312510" : { "username": "mario"         , "pivotal_id": "1111111", "mention_id": "7852362880949" },
+    "7682697740383" : { "username": "gullitmiranda" , "pivotal_id": "6598261", "mention_id": "630894273054"  },
+    "3376173914876" : { "username": "heitor"        , "pivotal_id": "2222222", "mention_id": "2332320534624" },
+    "2404440692626" : { "username": "julio"         , "pivotal_id": "3333333", "mention_id": "664580382873"  },
+    "1961837930139" : { "username": "felipe"        , "pivotal_id": "4444444", "mention_id": "1842692710925" },
+    "3543978773523" : { "username": "marcus"        , "pivotal_id": "5555555", "mention_id": "6190260436851" }
   },
   "projects": {
     // asanaProjectID: pivotalProjectID
@@ -24,14 +23,6 @@
     "6275359010324": { "pivotal_id": "6451272", "state": "unscheduled", "labels": ["blog"             ] },
     "5340000616852": { "pivotal_id": "6451272", "state": "unscheduled", "labels": ["brainstorm"       ] },
     "1310213583056": { "pivotal_id": "6451272", "state": "unscheduled", "labels": ["study", "analysis"] }
-
-    // 7530436664819 [sprint] #08 - mar 2015 (30 ao 10) -> Azuki
-    // 4976279083639 Backlog Azuki                      -> azk    (tag: sandbox)
-    // 2890890233685 Backlog azk                        -> azk    (tag: azk)
-    // 2088948562742 Bizdev - Azuki                     -> Bizdev (tags: bizdev, azk)
-    // 6275359010324 Blog                               -> Blog
-    // 5340000616852 Brainstorm                         -> Brainstorm
-    // 1310213583056 Estudos e analises                 -> Estudos e analises
   },
   "sections": {
     // section: state

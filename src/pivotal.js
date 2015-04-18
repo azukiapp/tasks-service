@@ -35,7 +35,7 @@ export class Pivotal extends Tracker {
 
       try {
         stories = JSON.parse(json);
-        stories = yield this._pushAllStories(stories);
+        stories = yield this.pushAllStories(stories);
       } catch (e) {
         throw e;
       }
@@ -52,11 +52,11 @@ export class Pivotal extends Tracker {
     filepath = filepath || this.options.from;
     return fs.readFileAsync(filepath)
       .then(function (data) {
-        utils.log("Successful read file " + chalk.green(filepath));
+        utils.log("Successful read file " + chalk.green(filepath), "\n");
         return data.toString();
       })
       .catch(BPromise.OperationalError, function (e) {
-        console.error("unable to read file, because: ", e.message);
+        console.error("unable to read file, because: ", e.message, "\n");
       });
   }
 
@@ -64,12 +64,12 @@ export class Pivotal extends Tracker {
     var filename = this.options.to;
     fs.writeFileAsync(filename, json)
       .then(function() {
-        utils.log("Successful saved file " + chalk.green(filename));
+        utils.log("Successful saved file " + chalk.green(filename), "\n");
       });
   }
 
-  _pushAllStories(stories) {
-    utils.log("Push", chalk.green(stories.length), "stories");
+  pushAllStories(stories) {
+    utils.log("Start push", chalk.green(stories.length), "stories:");
     return BPromise.coroutine(function* () {
       var new_stories = [];
 
@@ -83,10 +83,8 @@ export class Pivotal extends Tracker {
 
   pushStory(story, index) {
     return BPromise.coroutine(function* () {
-      var msg = "  Push to project " + chalk.green(story.project_id) + " story ";
-      if (!R.isNil(index)) {
-        msg += (Number(index) + 1) + " ";
-      }
+      var msg = (!R.isNil(index)) ? "    " + ((Number(index) + 1) + " ") : "  ";
+      msg += "Push to project " + chalk.green(story.project_id) + " story ";
       msg += chalk.green(story.name);
       utils.log(msg);
 

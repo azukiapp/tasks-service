@@ -38,7 +38,7 @@ export class Asana2Pivotal {
       content = stripJsonComments(fs.readFileSync(filepath).toString());
       content = JSON.parse(content);
     } catch (e) {
-      console.error("unable to read Map file, because: ", e.message);
+      throw e;
     }
     return content;
   }
@@ -147,8 +147,8 @@ export class Asana2Pivotal {
     // array of object to array of ids
     var owner_ids = R.map((owner) => owner.id, assignee.concat(owners));
 
-    // Clean duplicated
-    owner_ids = R.uniq(owner_ids);
+    // Clean duplicated and limit to three owners.
+    owner_ids = R.slice(0, 3)(R.uniq(owner_ids));
     labels = R.uniq(labels);
 
     // clean nil or empty

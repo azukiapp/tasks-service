@@ -58,7 +58,7 @@ describe("Asana2Pivotal", function() {
 
     it('should parsed tasks', function () {
       h.expect(workspace).to.have.property("tasks");
-      h.expect(workspace.tasks.length).to.eql(4);
+      h.expect(workspace.tasks.length).to.eql(5);
     });
 
     it('should subtasks, attachments and stories from first task', function () {
@@ -139,6 +139,16 @@ describe("Asana2Pivotal", function() {
       it('should owners from first storie', function () {
         var storie = workspace.stories[0];
         var owner_ids = [ 6598261, 3333333 ];
+        // Gullit Miranda
+        // Julio Saito
+
+        h.expect(storie.owner_ids).to.deep.equal(owner_ids);
+      });
+
+      it('should limit of three owners from forth storie', function () {
+        var storie = workspace.stories[4];
+        var owner_ids = [ 5555555, 6598261, 3333333 ];
+        // Marcus Gadbem
         // Gullit Miranda
         // Julio Saito
 
