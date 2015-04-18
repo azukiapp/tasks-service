@@ -15,9 +15,9 @@ export class Pivotal extends Tracker {
     super(api_key);
 
     options = R.merge({
-      from: 'normalized.json'
+      to: 'normalized.json'
     }, options);
-    options.to   = path.resolve(process.cwd(), options.from);
+    options.to   = path.resolve(process.cwd(), options.to);
 
     if (options.verbose) {
       utils.verbose = options.verbose;
