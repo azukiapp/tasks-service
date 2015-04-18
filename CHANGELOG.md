@@ -11,6 +11,7 @@
   * [Normalize] In some projects, the sections become labels;
   * [Normalize] Remove invalid `person_id` from story comments;
   * [Pivotal] Adding support to publish all stories to pivotal;
+  * [Normalize] Limite to three owner;
 
 ## v0.0.1 (2015-03-15)
 
