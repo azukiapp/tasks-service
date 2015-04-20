@@ -202,6 +202,17 @@ export class Asana2Pivotal {
     return story;
   }
 
+  // Remove system comments
+  cleanSystemComments(stories) {
+    if (R.isArrayLike(stories)) {
+      var isntSystem = function(storie) {
+        return storie.type !== "system";
+      };
+      stories = R.filter(isntSystem, stories);
+    }
+    return stories;
+  }
+
   subtasksToTasks(tasks) {
     var assignees     = [];
     var descriptions  = [];
@@ -224,14 +235,14 @@ export class Asana2Pivotal {
   }
 
   comments(task) {
-    // stories (comments)
+    var comments  = this.cleanSystemComments(task.stories);
     var normalize = function(storie) {
       return {
         text: storie.text,
         person_id: storie.created_by.id
       };
     };
-    var stories = R.map(normalize, (task.stories || []));
+    comments = R.map(normalize, (comments || []));
 
     // attachments
     var attachments = R.map(((attach) => {
@@ -242,6 +253,6 @@ export class Asana2Pivotal {
     }), (task.attachments || []));
     attachments = (!R.isEmpty(attachments)) ? [{ file_attachments: attachments }] : [];
 
-    return attachments.concat(stories);
+    return attachments.concat(comments);
   }
 }

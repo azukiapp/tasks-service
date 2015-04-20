@@ -147,9 +147,7 @@ export class Asana {
 
         if (!is_subtask) {
           task.subtasks = yield this._subtasksByTaskID(i, task.id, padding, i);
-
-          var stories   = yield this._storiesByTaskId(i, task.id, padding, i);
-          task.stories  = this._storiesClean(stories);
+          task.stories  = yield this._storiesByTaskId(i, task.id, padding, i);
         }
       } catch (e) {
         task = yield this._taskById(i, task, padding, acc);
@@ -258,17 +256,6 @@ export class Asana {
     return this.client.stories
       .findByTask(id)
       .then((result) => result.data ? result.data : []);
-  }
-
-  // Remove system stories
-  _storiesClean(stories) {
-    if (R.isArrayLike(stories)) {
-      var isntSystem = function(storie) {
-        return storie.type !== "system";
-      };
-      stories = R.filter(isntSystem, stories);
-    }
-    return stories;
   }
 
   _projectsByWorkspace(workspace, projects) {
