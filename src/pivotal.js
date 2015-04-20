@@ -6,6 +6,7 @@ var R        = require('ramda');
 var BPromise = require("bluebird");
 var path     = require("path");
 var fs       = BPromise.promisifyAll(require("fs"));
+var request  = BPromise.promisify(require("request"));
 
 // Log
 var chalk = require('chalk');
@@ -89,6 +90,13 @@ export class Pivotal extends Tracker {
       utils.log(msg);
 
       story = yield this.client.createStoryAsync(story.project_id, story);
+      for (var i in story.comments) {
+        var comment = story.comments[i];
+        if (comment.hasOwnProperty("file_attachments")) {
+          comment.file_attachments = yield this.publishAttachments(comment.file_attachments);
+        }
+        story.comments[i] = comment;
+      }
 
       if (story.kind === 'error') {
         console.log('story:', story);
@@ -116,8 +124,72 @@ export class Pivotal extends Tracker {
           yield this.client.deleteStoryAsync(project_id, story.id);
         }
 
+  publishAttachments(attachments) {
+    return BPromise.coroutine(function* () {
+      for (var i in attachments) {
+        var attachment = attachments[i];
+        utils.log("    Download", chalk.green(attachment.name), "(" + chalk.green(attachment.url) + ")");
+        attachments[i] = yield this.downloadAtacchment(attachment);
         yield BPromise.delay(0.1);
+        break;
       }
+      return attachments;
+    }.bind(this))();
+  }
+
+  downloadAtacchment(attach) {
+    var url = attach.url;
+    var dir = path.resolve(process.cwd(), 'tmp', 'attachments', attach.name);
+    // var dest = 'test';
+    return BPromise.coroutine(function* () {
+      console.log('url:', url);
+      console.log('dir:', dir);
+      var opts = {
+        url: url,
+        method: 'GET'
+      };
+
+      var file = fs.createWriteStream(dir);
+
+      var attachment = yield request(opts)
+        .then((contents) => {
+          var [response, body] = contents;
+          var error = (response.statusCode >= 400 && response.statusCode < 500);
+
+          if (error) {
+            console.log('\n>>---------');
+            console.log('error:', response.body);
+            console.log('<<---------');
+          } else {
+            console.log('response.statusCode:', response.statusCode);
+            console.log('body.length:', body.length);
+          }
+          return response.pipe(file);
+        }).catch((err) => {
+          throw err;
+        });
+
+      console.log('\n>>---------');
+      console.log('file:', file);
+      console.log('<<---------');
+
+      // var file = fs.createWriteStream(dir);
+      // var request = yield http.getAsync(url)
+      //   .then((response) => {
+      //     response.pipe(file);
+      //     file.on('finish', function () {
+      //       return file.closeAsync(); // close() is async, call callback after close completes.
+      //     });
+      //   })
+      //   .fail((error) => {
+      //     file.on('error', function (err) {
+      //       fs.unlink(dest); // Delete the file async. (But we don't check the result)
+      //       if (callback) {
+      //         callback(err.message);
+      //       }
+      //     });
+      //   });
+      return attachment;
     }.bind(this))();
   }
 }

@@ -33,6 +33,7 @@
     "pivotaljs": "^1.0.1",
     "prettyjson": "^1.1.0",
     "ramda": "^0.13.0",
+    "request": "^2.55.0",
     "source-map-support": "^0.2.10",
     "strip-json-comments": "^1.0.2"
   },
