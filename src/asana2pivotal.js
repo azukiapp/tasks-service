@@ -195,6 +195,9 @@ export class Asana2Pivotal {
       story.deadline   = (new Date(task.due_on)).toISOString();
       story.story_type = "release";
     }
+    if (story.current_state && story.current_state == "finished") {
+      story.estimate = 1;
+    }
 
     return story;
   }
