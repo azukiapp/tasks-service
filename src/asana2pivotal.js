@@ -53,9 +53,14 @@ export class Asana2Pivotal {
       workspace = JSON.parse(json);
 
       if (R.is(Object, workspace) && !R.isEmpty(workspace.tasks)) {
+        var old_length = workspace.tasks.length;
+        utils.log("  Normalize", chalk.green(workspace.tasks.length), "tasks");
+        workspace.tasks = R.filter((task) => !R.isNil(task), workspace.tasks);
+        utils.log("  Remove", chalk.green(old_length - workspace.tasks.length), "empty tasks");
         stories = workspace.tasks.map(this.taskToStorie.bind(this));
       }
 
+      utils.log("  " + chalk.green(stories.length), chalk.blue("normalized stories"));
       var normalized_json = JSON.stringify(stories, null, 2);
       this.saveFile(normalized_json);
 
@@ -104,17 +109,18 @@ export class Asana2Pivotal {
   }
 
   projectMap(task) {
-    var projectMaped = this.map.defaults.projects;
+    var projectMaped = R.clone(this.map.defaults.projects);
 
+    console.log('task:', task);
     if (!R.isEmpty(task.projects) && !R.isEmpty(task.projects[0])) {
-      projectMaped = this.map.projects[task.projects[0].id] || projectMaped;
+      projectMaped = R.clone(this.map.projects[task.projects[0].id]) || projectMaped;
     }
 
     // Replaces the state based in section
     var membership = R.find(R.prop('section'))(task.memberships);
     var section    = (membership && membership.section.name);
     if (!R.isNil(section) && this.map.sections.hasOwnProperty(section)) {
-      var sectionMaped = this.map.sections[section];
+      var sectionMaped = R.clone(this.map.sections[section]);
       if (!R.isNil(sectionMaped)) {
         if (sectionMaped.hasOwnProperty("state")) {
           projectMaped.state = sectionMaped.state;
@@ -135,6 +141,7 @@ export class Asana2Pivotal {
     var labels       = projectMaped.labels.concat(task.tags);
 
     var [subtasks, owners, subtasks_comments] = this.subtasksToTasks(task.subtasks);
+
     labels = R.map((label) => {
       if (R.is(Object, label) && label.hasOwnProperty('name')) {
         label = label.name;
