@@ -20,8 +20,9 @@ var colorize = function(index, string) {
 export class Asana {
   constructor(api_key, options) {
     options = R.merge({
-      to      : 'debug.json',
-      parallel: 10
+      to             : 'debug.json',
+      parallel       : 10,
+      completed_since: (new Date("2013")).toISOString()
     }, options);
     options.to   = path.resolve(process.cwd(), options.to);
 
@@ -29,7 +30,9 @@ export class Asana {
       utils.verbose = options.verbose;
     }
 
-    this.client  = Client.create().useBasicAuth(api_key);
+    this.client  = Client.create({
+      retryOnRateLimit: true
+    }).useBasicAuth(api_key);
     this.options = options;
   }
 
@@ -39,13 +42,18 @@ export class Asana {
       var workspace      = yield this._workspaceByName(workspace_name);
       workspace.projects = yield this._projectsByWorkspace(workspace, projects);
 
-      var tasks       = yield this._tasksAllProjects(projects, workspace);
-      workspace.tasks = tasks[0];
+      var result = yield this._tasksAllProjects(projects, workspace);
+      workspace.tasks = result.tasks;
       utils.log("Save", chalk.green(workspace.tasks.length), "tasks");
 
-      if (!R.isEmpty(tasks[1])) {
-        workspace.errors = tasks[1] || [];
-        utils.log("with", chalk.green(workspace.errors.length), "erros");
+      if (!R.isEmpty(result.errors)) {
+        workspace.errors = result.errors || [];
+        utils.log("with", chalk.red(workspace.errors.length), "erros");
+      }
+
+      if (!R.isEmpty(result.total_length)) {
+        workspace.total_length = result.total_length;
+        utils.log(" from total of", chalk.red(workspace.total_length), "tasks");
       }
 
       var json = JSON.stringify(workspace, null, 2);
@@ -64,8 +72,8 @@ export class Asana {
 
   _parallelTasks(elems, padding) {
     return BPromise.coroutine(function* () {
-      var success = [];
-      var errors  = [];
+      var tasks       = [];
+      var errors      = [];
       var retry_after = 0;
 
       if (elems.length > 0) {
@@ -75,7 +83,7 @@ export class Asana {
         var start = 0;
 
         while (start < elems.length) {
-          var end = parallel + start;
+          var end = Math.min(parallel + start, elems.length);
           var multiple_promisses = [];
 
           for (var acc = start, i = 0; acc < end; acc++, i++) {
@@ -90,13 +98,30 @@ export class Asana {
               var elm    = elems[elm_i];
 
               if (result.isFulfilled()) {
-                success.push(result.value());
+                utils.log(
+                  chalk.green(
+                    padding + '  Success in get',
+                    colorize(j, "@" + elm_i),
+                    colorize(j, "@" + elm.id),
+                    elm.name
+                  )
+                );
+
+                tasks.push(result.value());
               } else if (result.isRejected()) {
+                utils.log(
+                  chalk.red(
+                    padding + '  Error to get task',
+                    colorize(j, "@" + elm_i),
+                    colorize(j, "@" + elm.id),
+                    result.reason().message
+                  )
+                );
+
                 retry_after = Math.max(retry_after, result.reason().retryAfterSeconds) || retry_after;
-                elm.error = result;
-                // console.log('result:', result);
+                elm.error   = result;
+
                 errors.push(elm);
-                // result.reason();
               }
             }
           });
@@ -104,57 +129,66 @@ export class Asana {
           start = end;
         }
       }
-      if (errors.length > 0) {
-        // console.log(JSON.stringify(errors, null, 2));
-        retry_after += 1;
-        utils.log(padding + "Retry", chalk.cyan(errors.length), "tasks in", retry_after, "seconds.\n");
-        yield BPromise.delay(retry_after * 1000);
 
-        var retry = yield this._parallelTasks(errors, "      ");
-        success.concat(retry[0]);
-        errors = retry[1];
-      }
-
-      return [success, errors];
+      return { tasks, errors, retry_after };
     }.bind(this))();
   }
 
-  _taskById(i, task, padding, acc) {
+  _taskById(i, task, padding, acc, is_subtask) {
     return BPromise.coroutine(function* () {
-      if (task && task.id) {
-        var tag = padding + colorize(i, "@" + acc);
-        utils.log(tag, colorize(i, task.id + ":" ), "Find data of task", chalk.gray(task.name));
-        padding += "  "; // increment padding to chields
+      var tag = padding + colorize(i, "@" + acc);
+      utils.log(tag, colorize(i, task.id + ":" ), "Find data of task", chalk.gray(task.name));
+      padding += "  "; // increment padding to chields
 
+      try {
         task = yield this.client.tasks.findById(task.id);
         // var attachments = yield this._attachmentsByTaskId(task.id);
         // task.attachments = attachments;
 
-        var stories   = yield this._storiesByTaskId(i, task.id, padding, i)
-          .error((err) => {
-            utils.log(padding, " Error to get stories of task", colorize(i, task.id ), err);
-            utils.log(padding, err);
-          });
-        task.stories  = this._storiesClean(stories);
-        task.subtasks = yield this._subtasksByTaskID(i, task.id, padding, i)
-          .error((err) => {
-            utils.log(padding, " Error to get subtasks of task", colorize(i, task.id ), err);
-            utils.log(padding, err);
-          });
+        if (!is_subtask) {
+          task.subtasks = yield this._subtasksByTaskID(i, task.id, padding, i);
 
-        return task;
+          var stories   = yield this._storiesByTaskId(i, task.id, padding, i);
+          task.stories  = this._storiesClean(stories);
+        }
+      } catch (e) {
+        task = yield this._taskById(i, task, padding, acc);
+        console.log(chalk.red(e));
       }
+
+      return task;
     }.bind(this))();
   }
 
   _tasksByProject(project) {
+    utils.log("\n\n    --------------------------");
     utils.log("    " + chalk.cyan(project.id) + ": Find tasks to project", project.name);
+
     return BPromise.coroutine(function* () {
-      var tasks = yield this.client.tasks
-        .findByProject(project.id)
+      var tasks_list = yield this.client.tasks
+        .findByProject(project.id, {
+          limit          : 100,
+          completed_since: "now"
+        })
         .then((result) => result.data ? result.data : []);
 
-      return this._parallelTasks(tasks, "      ");
+      var tasks        = [];
+      var errors       = [];
+      var total_length = tasks_list.length;
+
+      do {
+        var result = yield this._parallelTasks(tasks_list, "      ");
+        tasks      = tasks.concat(result.tasks);
+        errors     = result.errors;
+
+        if (!R.isEmpty(errors)) {
+          utils.log("      Retry", chalk.cyan(errors.length),
+            "tasks in", result.retry_after, "seconds.\n");
+          yield BPromise.delay(result.retry_after * 1000);
+        }
+      } while (!R.isEmpty(errors));
+
+      return { tasks, errors, total_length };
     }.bind(this))();
   }
 
@@ -162,6 +196,8 @@ export class Asana {
     return BPromise.coroutine(function* () {
       var tasks  = [];
       var errors = [];
+      var total_length = 0;
+
       for (var i = 0; projects.length > i; i++) {
         var filter    = R.find(R.propEq('name', projects[i]));
         var project   = filter(workspace.projects);
@@ -169,11 +205,13 @@ export class Asana {
         if (!R.isEmpty(project) && project.id) {
           var result = yield this._tasksByProject(project);
 
-          tasks  = tasks.concat(result[0]);
-          errors = errors.concat(result[1]);
+          tasks  = tasks.concat(result.tasks);
+          errors = errors.concat(result.errors);
+          total_length += result.total_length;
         }
       }
-      return [tasks, errors];
+
+      return { tasks, errors, total_length };
     }.bind(this))();
   }
 
@@ -207,11 +245,10 @@ export class Asana {
         .then((result) => result.data ? result.data : []);
 
       for (var i = 0; subtasks.length > i; i++) {
-        subtasks[i] = yield this._taskById(task_index, subtasks[i], padding, i);
+        subtasks[i] = yield this._taskById(task_index, subtasks[i], padding, i, true);
       }
 
       return subtasks;
-      // return this._parallelTasks(subtasks, padding);
     }.bind(this))();
   }
 
