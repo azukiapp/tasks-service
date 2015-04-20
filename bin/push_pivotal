@@ -6,8 +6,8 @@ var nopt = require('nopt');
 
 var knownOpts = {
   'from'  : String,
-  'help'    : Boolean,
-  'silent'  : Boolean
+  'help'  : Boolean,
+  'silent': Boolean
 };
 
 var shortHands = {

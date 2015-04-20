@@ -98,8 +98,8 @@ export class Pivotal extends Tracker {
     }.bind(this))();
   }
 
-  deleteAllStories() {
-    var project_ids = [1313414, 1325046];
+  deleteAllStories(project_ids) {
+    project_ids = project_ids || [];
 
     return BPromise.coroutine(function* () {
       for (var i in project_ids) {
@@ -110,13 +110,15 @@ export class Pivotal extends Tracker {
           return stories;
         });
 
-        for (var ix in stories) {
-          var story = stories[ix];
-          utils.log("    Remove task", chalk.green(story.id), "-", chalk.green(story.name));
-          yield this.client.deleteStoryAsync(project_id, story.id);
+        if (!stories.code) {
+          for (var ix in stories) {
+            var story = stories[ix];
+            utils.log("    Remove task", chalk.green(story.id), "-", chalk.green(story.name));
+            yield this.client.deleteStoryAsync(project_id, story.id);
+          }
+        } else {
+          utils.log("    No tasks to remove!");
         }
-
-        yield BPromise.delay(0.1);
       }
     }.bind(this))();
   }
