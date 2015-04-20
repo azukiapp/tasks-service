@@ -12,6 +12,7 @@
   * [Normalize] Remove invalid `person_id` from story comments;
   * [Pivotal] Adding support to publish all stories to pivotal;
   * [Normalize] Limite to three owner;
+  * [Asana] Fixing Asana error "Limit Rated";
 
 ## v0.0.1 (2015-03-15)
 
